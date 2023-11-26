@@ -370,9 +370,11 @@ jobs:
         with:
           version: latest-everything
 
-      - name: Setup apptainer
+      - name: Install Singularity
         if: matrix.profile == 'singularity'
-        uses: eWaterCycle/setup-apptainer@main
+        uses: singularityhub/install-singularity@main
+        with:
+          singularity-version: 4.0.2
 
       - name: Set up Singularity
         if: matrix.profile == 'singularity'
