@@ -374,6 +374,7 @@ jobs:
         if: matrix.profile == 'singularity'
         run: |
           wget https://github.com/sylabs/singularity/releases/download/v4.0.2/singularity-ce_4.0.2-jammy_amd64.deb
+          sudo apt-get install -y runc libfuse2
           sudo dpkg -i singularity-ce_4.0.2-jammy_amd64.deb
 
       - name: Set up Singularity
@@ -381,11 +382,6 @@ jobs:
         run: |
           mkdir -p $NXF_SINGULARITY_CACHEDIR
           mkdir -p $NXF_SINGULARITY_LIBRARYDIR
-
-        # For OCI images
-      - name: Install runc
-        if: matrix.profile == 'singularity'
-        run: sudo apt-get install -y runc
 
       - name: Set up miniconda
         uses: conda-incubator/setup-miniconda@v2
